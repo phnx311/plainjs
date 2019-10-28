@@ -3,22 +3,76 @@
   <head>
     <title> CSS Variables</title>
     <style>
+      :root {
+        --color: red;
+        --size: 500px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      .image {
+        height: var(--size);
+        width: var(--size);
+        background-size: cover;
+        background-position: center;
+        background-image: url('./manhattan.jpg');
+        box-shadow: 10px 10px 10px var(--color);
+      }
+
+      h1 {
+        color: var(--color);
+      }
+
 
     </style>
   </head>
   <body>
     <h1>CSS Variables</h1>
-    <div class='controls'>
-      <label for='spacing'>Spacing</label>
-      <input type="range" name='spacing'>
+    <div class='container'>
+      <div class='controls'>
+        <label for='size'>Size</label>
+        <input type="range" name='spacing'>
 
-      <label for='blur'>Blur</label>
-      <input type="range" name='blur'>
+        <label for='blur'>Blur</label>
+        <input type="range" name='blur'>
 
-      <label for='color'>Color</label>
-      <input type="color" name='color'>
-
-      <img src="./manhattan.jpg" alt="aerial photo of Manhattan from the south">
+        <label for='color'>Color</label>
+        <input type="color" name='color'>
+        <div class='image'>
+        </div>
+      </div>
+      <div class='instructions'>
+        <ul>
+          <li>Adjust Size to use Javscript to change the size CSS Variable</li>
+          <li>Adjust Blur to use Javscript to change the blur CSS Variable</li>
+          <li>Adjust Color to use Javscript to change the color CSS Variable</li>
+          <li>Observe changes in console as well</li>
+        </ul>
+      </div>
     </div>
+    <script>
+      const inputs = document.querySelectorAll('.controls input'); //a nodelist
+
+      //create a handle change function that adjusts the css variables on the root node
+      function handleChange(event) {
+       console.log(event);
+       //get document and change style specifically css variables
+       const doc = document.documentElement;
+
+       doc.style.setProperty(`--${this.name}`, event.target.value);
+       //event.target.value
+      }
+      //add event listeners to each element in nodelist
+      inputs.forEach(input => {input.addEventListener('change', handleChange)})
+
+    </script>
   </body>
 </html>
