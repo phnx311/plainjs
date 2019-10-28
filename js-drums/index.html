@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="./styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class='keys'>
+        <div class='key' data-sound='boom' data-key=''>
+          Boom
+          <span class='key-char' id='boom-key'>A</span>
+        </div>
+        <div class='key' data-sound='clap' data-key=''>
+          Clap
+          <span class='key-char' id='clap-key'></span>
+        </div>
+        <div class='key' data-sound='hihat' data-key=''>
+          Hi-Hat
+          <span class='key-char' id='hihat-key'></span>
+        </div>
+        <div class='key' data-sound='kick' data-key=''>
+          Kick
+          <span class='key-char' id='kick-key'></span>
+        </div>
+        <div class='key' data-sound='openhat' data-key=''>
+          Op-Hat
+          <span class='key-char' id='openhat-key'></span>
+        </div>
+        <div class='key' data-sound='ride' data-key=''>
+          Ride
+          <span class='key-char' id='ride-key'></span>
+        </div>
+        <div class='key' data-sound='snare' data-key=''>
+          Snare
+          <span class='key-char' id='snare-key'></span>
+        </div>
+        <div class='key' data-sound='tink' data-key=''>
+          Tink
+          <span class='key-char' id='tink-key'></span>
+        </div>
+      </div>
+      <audio src='./sounds/boom.wav' id='boom' ></audio>
+      <audio src='./sounds/clap.wav' id='clap' ></audio>
+      <audio src='./sounds/hihat.wav' id='hihat' ></audio>
+      <audio src='./sounds/kick.wav' id='kick' ></audio>
+      <audio src='./sounds/openhat.wav' id='openhat' ></audio>
+      <audio src='./sounds/ride.wav' id='ride' ></audio>
+      <audio src='./sounds/snare.wav' id='snare' ></audio>
+      <audio src='./sounds/tink.wav' id='tink' ></audio>
+    </div>
+    <script>
+      //create input keys code array
+      const keyCharsObj = {};
+      //loop through all elements with class key
+      const keys = document.getElementsByClassName('key');
+      for (let key of keys) {
+        window.addEventListener('keydown', function(e){
+          console.log(e);
+        })
+        let keyChar = prompt(`ENTER KEY TO TRIGGER ${key.dataset.sound.toUpperCase()}`, 'Type a single character');
+        keyChar = keyChar.toUpperCase();
+        while (keyCharsObj[`${keyChar}`]) {
+           keyChar = prompt(`ENTER KEY TO TRIGGER ${key.dataset.sound.toUpperCase()}`, 'Try a different key');
+           keyChar = keyChar.toUpperCase();
+        }
+          keyCharsObj[`${keyChar}`] = keyChar;
+          key.setAttribute('key', keyChar);
+          const sound = key.dataset.sound;
+          const spanEl = document.getElementById(`${sound}-key`)
+          console.log(spanEl)
+          spanEl.innerHTML=keyChar;
+      }
+
+    </script>
+  </body>
+</html>

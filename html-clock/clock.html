@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./clock.css" type="text/css">
+  </head>
+  <body>
+    <div class='title'>Plain JS Clock</div>
+    <div class='clock'>
+      <div class='clock-face'>
+        <div class='hand hour-hand'></div>
+        <div class='hand minute-hand'></div>
+        <div class='hand second-hand'></div>
+    </div>
+    <script>
+      const secondHand = document.querySelector('.second-hand');
+      const minuteHand = document.querySelector('.minute-hand');
+      const hourHand = document.querySelector('.hour-hand');
+
+      function convertToDegrees(minOrSec) {
+        return minOrSec / 60 * 360
+      };
+
+      function convertHourToDegrees(hours) {
+        const quotient = hours / 12;
+        if (quotient < 1) {
+          return quotient * 360;
+        } else if (quotient > 1) {
+          return (quotient - 1) * 360;
+        } else if (quotient === 1) {
+          return 0
+        }
+      }
+
+      function setDate() {
+        const time = new Date();
+        const seconds = time.getSeconds();
+        const minutes = time.getMinutes();
+        const hours = time.getHours();
+        const secondDegrees = convertToDegrees(seconds);
+        const minuteDegrees = convertToDegrees(minutes);
+        const hourDegrees = convertHourToDegrees(hours);
+        secondHand.style.transform = `rotate(${secondDegrees + 90}deg)`;
+        console.log(secondHand.style.transform);
+        minuteHand.style.transform = `rotate(${minuteDegrees + 90}deg)`;
+        hourHand.style.transform = `rotate(${hourDegrees + 90}deg)`;
+      }
+
+      setInterval(setDate, 1000);
+    </script>
+  </body>
+</html>

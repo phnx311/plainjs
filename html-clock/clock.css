@@ -1,0 +1,60 @@
+.body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.title {
+  font-size: 5rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: absolute;
+  left: 30%;
+}
+
+.clock {
+  height: 350px;
+  width: 350px;
+  background-color: lightblue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock-face {
+  height: 65%;
+  width: 65%;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.hand{
+  height: 2.5px;
+  width: 50%;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  transform-origin: 100%;
+}
+
+.second-hand {
+  width: 45%;
+  left: 5%;
+}
+
+.minute-hand {
+  width: 40%;
+  left: 10%;
+}
+
+.hour-hand {
+  width: 35%;
+  left: 15%;
+}
+
+
+
