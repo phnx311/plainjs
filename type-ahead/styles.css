@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.search-input {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  height: auto;
+  font-size: 2em;
+}
+
+.search-results {
+  border: .5px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+  border: 1px solid red;
+  background-color: white;
+  color: black
+}

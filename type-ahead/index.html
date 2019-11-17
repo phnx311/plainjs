@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Type Ahead</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class='container'>
+    <form class='search-input'>
+      <input type="text">
+    </form>
+    <div class='search-results'>
+      <ul class='city-list'>
+        <li class='city-list-item'><span>city</span><span>population</span></li>
+        <li class='city-list-item'><span>city</span><span>population</span></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    //fetch cities and store locally
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+    const cities = [];
+    fetch(endpoint)
+      .then(blob => {
+        console.log(blob);
+        //returns a promise that resolves to a javascript object
+        return blob.json()})
+      .then(data => {
+        console.log(data)
+        //one can push a list into an array
+        cities.push(...data)
+        });
+
+    //create a RegExp Obj and use .match() on city property of object and filter array elements that match to a return array
+
+    const input = document.querySelector('input');
+    input.addEventListener('keyup', findMatches);
+
+    function findMatches(event) {
+      console.log(event.target.value)
+      const match = new RegExp(event.target.value, 'gi');
+
+      const arrayOfCities = cities.filter(item => {
+        return item.city.match(match);
+      })
+
+      displayMatches(arrayOfCities);
+    }
+
+    function displayMatches(arrayOfCities) {
+      const html = arrayOfCities.map(item => {
+        return `<li><span class='city'>${item.city}</span ><span class='population'>${item.population}</span></li>`
+      }).join("");
+      const searchResults = document.querySelector('.city-list');
+      searchResults.innerHTML = html;
+    }
+
+  </script>
+</body>
+</html>
