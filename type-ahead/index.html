@@ -12,12 +12,10 @@
     <form class='search-input'>
       <input type="text">
     </form>
-    <div class='search-results'>
-      <ul class='city-list'>
-        <li class='city-list-item'><span>city</span><span>population</span></li>
-        <li class='city-list-item'><span>city</span><span>population</span></li>
-      </ul>
-    </div>
+    <ul class='search-results'>
+      <li class='def'>Filter</li>
+      <li class='def'>For a City or State</li>
+    </ul>
   </div>
   <script>
     //fetch cities and store locally
@@ -53,9 +51,9 @@
 
     function displayMatches(arrayOfCities) {
       const html = arrayOfCities.map(item => {
-        return `<li><span class='city'>${item.city}</span ><span class='population'>${item.population}</span></li>`
+        return `<li class='city-list-item'><span class='city'>${item.city}, ${item.state}</span ><span class='population'>${item.population}</span></li>`
       }).join("");
-      const searchResults = document.querySelector('.city-list');
+      const searchResults = document.querySelector('.search-results');
       searchResults.innerHTML = html;
     }
 

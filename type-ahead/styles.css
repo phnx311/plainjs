@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0
+}
 html {
   box-sizing: border-box;
   background: #ffc600;
@@ -17,9 +21,6 @@ body {
 
 .container {
   margin: 50px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 50%;
 }
 
@@ -35,14 +36,27 @@ input {
 
 .search-results {
   border: .5px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
+  width: 100%;
 }
 
-li {
+li.city-list-item {
   list-style: none;
   border: 1px solid red;
   background-color: white;
-  color: black
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
+
+li.def {
+  list-style: none;
+  border: 1px solid red;
+  background-color: white;
+  color: black;
+  text-align: center
+}
+
