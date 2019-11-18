@@ -43,7 +43,7 @@
       const match = new RegExp(event.target.value, 'gi');
 
       const arrayOfCities = cities.filter(item => {
-        return item.city.match(match);
+        return item.city.match(match) || item.state.match(match);
       })
 
       displayMatches(arrayOfCities);
