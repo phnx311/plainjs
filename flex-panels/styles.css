@@ -90,6 +90,12 @@ body {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
 }
 
+@media only screen and (max-width:600px) {
+  .panel p {
+    font-size: 1em;
+  }
+}
+
 .panel.open {
   font-size: 40px;
   flex: 5;

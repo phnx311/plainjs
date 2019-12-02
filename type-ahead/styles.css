@@ -32,6 +32,7 @@ input {
   width: 100%;
   height: auto;
   font-size: 2em;
+  text-align: center;
 }
 
 .search-results {
