@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <title>Checkbox</title>
+</head>
+<body>
+  <div class='container'>
+    <div class='list'>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+      <div class='list-item'>
+        <input type="checkbox">
+        <p>This is a list item</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    //get all input elements and add a click event listener that calls a handleClick function
+    const nodeList = document.querySelectorAll("input[type='checkbox']");
+    console.log(nodeList)
+    nodeList.forEach(node => {
+      node.addEventListener('click', handleClick)
+    })
+    let lastClicked;
+    let inBetween = false;
+    //define handleClick function
+    function handleClick(e) {
+
+      //Check if the shift button is held and 'lastClicked' is undefined, if it is
+      if (e.shiftKey && !lastClicked) {
+        //set that element to a 'lastClicked' variable
+        lastClicked = this;
+      }
+      //if lastClicked has a value
+      else if (e.shiftKey && lastClicked) {
+        nodeList.forEach(node => {
+          if (inBetween) {
+           node.checked = true;
+           lastCheck = undefined;
+          }
+          if (node === this || node === lastClicked) {
+            inBetween = !inBetween;
+          }
+        })
+      }
+    }
+  </script>
+</body>
+</html>
