@@ -37,8 +37,6 @@
       <li>Loading Tapas...</li>
     </ul>
 
-    <hr>
-
     <form class="add-items">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
@@ -46,9 +44,59 @@
   </div>
 
   <script>
-    const addItems = document.querySelector('.add-items');
+    const form = document.querySelector('.add-items');
     const itemsList = document.querySelector('.plates');
-    const items = [];
+    const items = JSON.parse(localStorage.getItem('items')) || [];
+
+    //listeners
+    form.addEventListener('submit', addItem, false)
+    //uses event delegation, ie. parent listens for the event
+    itemsList.addEventListener('click', toggleDone)
+
+
+    if (items.length > 0) {
+      populateList(items, itemsList)
+    }
+
+    //create an addItem function and add a listener to the submit button
+    function addItem(e) {
+      //prevent the default which is to send to domain with parameter attached
+      e.preventDefault();
+      //take the value, create an object with value and a done value of false, and push to items array
+      let input = e.target[0].value
+      let obj = {
+        text: input,
+        done: false
+      }
+      items.push(obj);
+      localStorage.setItem('items', JSON.stringify(items))
+      populateList(items, itemsList)
+      this.reset();
+    }
+
+    //create a function that populates the unordered list on the dom
+    function populateList(arr, listElement) {
+      //map over list to create an array of strings
+      let arrOfStrings = arr.map((item, idx) => `
+      <li>
+        <input id="plate" type="checkbox" data-index=${idx} ${item.done ? 'checked' : ''}>
+        <label for="plate">
+          ${item.text}
+        </label>
+      </li>
+      `)
+      //join strings and
+      //set innerHTML of Items List to created string
+      listElement.innerHTML = arrOfStrings.join('')
+    }
+
+    function toggleDone(e) {
+      if (!e.target.matches('input')) return;
+      let index = e.target.dataset.index
+      //change property on items list
+      items[index].done = !items[index].done;
+      localStorage.setItem('items', JSON.stringify(items))
+    }
 
   </script>
 
