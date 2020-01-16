@@ -79,8 +79,8 @@
       //map over list to create an array of strings
       let arrOfStrings = arr.map((item, idx) => `
       <li>
-        <input id="plate" type="checkbox" data-index=${idx} ${item.done ? 'checked' : ''}>
-        <label for="plate">
+        <input id="plate${idx}" type="checkbox" data-index=${idx} ${item.done ? 'checked' : ''}>
+        <label for="plate${idx}">
           ${item.text}
         </label>
       </li>
@@ -93,6 +93,7 @@
     function toggleDone(e) {
       if (!e.target.matches('input')) return;
       let index = e.target.dataset.index
+      console.log(e.target)
       //change property on items list
       items[index].done = !items[index].done;
       localStorage.setItem('items', JSON.stringify(items))
