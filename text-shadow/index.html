@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="styles.css">
   <title>Text Shadow</title>
   <style>
 
@@ -39,5 +38,34 @@
   <div class="hero">
     <h1 contenteditable="true">WOAH</h1>
   </div>
+
+  <script>
+    let hero = document.querySelector('.hero')
+    let text = document.querySelector('h1')
+
+    hero.addEventListener('mousemove', handleMouseOver);
+
+    function handleMouseOver(event) {
+      console.log(event)
+      //when the mouse moves, where it is w/respect to the top of the div and the left edge determines where the value of the text shadow
+      let { offsetX: x , offsetY: y } = event;
+      const { offsetWidth: width, offsetHeight: height } = hero;
+
+      if (this !== event.target) {
+        //offsetLeft is the distance of left edge from nearest parent
+        x = x + event.target.offsetLeft;
+        y = y + event.target.offsetTop;
+      }
+
+      let walk = 100;
+
+      //the max offset that can occur so 50px to the righ 50px to the left
+      let xWalk =  (x/width) * walk - (walk/2)
+      let yWalk = (y/height) * walk - (walk/2)
+
+      text.style.textShadow = `${xWalk}px ${yWalk}px 8px #FF0000`
+    }
+
+  </script>
 </body>
 </html>
