@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sorting Bands</title>
+</head>
+<body>
+
+  <ul id='bands'></ul>
+
+  <script>
+    const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+    //main point here is to sort this array of strings, but without the articles ie. not considering 'An' or 'A' in the sort
+
+    const strip = (string) => string.replace(/^(a |the |an )/i, '')
+
+    bands.sort((a,b) => {
+      if(strip(a) > strip(b)) {
+        return 1;
+      } else {
+        return -1;
+      }
+    })
+
+    const list = document.querySelector('#bands');
+    console.log(list)
+
+    list.innerHTML = bands.map((band, idx) => {
+      return `<li>${band}</li>`
+    }).join('');
+
+  </script>
+</body>
+</html>
